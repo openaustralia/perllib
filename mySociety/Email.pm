@@ -174,7 +174,7 @@ Unicode strings.
 =cut
 sub do_template_substitution ($$) {
     my ($body, $params) = @_;
-    $body =~ s#<\?=\$values\['([^']+)'\]\?>#do_one_substitution($params, $1)#ges;
+    $body =~ s#<\?php echo \$values\['([^']+)'\]\ ?>#do_one_substitution($params, $1)#ges;
 
     my $subject;
     if ($body =~ m#^Subject: ([^\n]*)\n\n#s) {
@@ -221,7 +221,7 @@ be word-wrapped before sending.
 =item _template_, _parameters_
 
 Templated body text and an associative array of template parameters. _template
-contains optional substititutions <?=$values['name']?>, each of which is
+contains optional substititutions <?php echo $values['name'] ?>, each of which is
 replaced by the value of the corresponding named value in _parameters_. It is
 an error to use a substitution when the corresponding parameter is not present
 or undefined. The first line of the template will be interpreted as contents of
