@@ -174,7 +174,7 @@ Unicode strings.
 =cut
 sub do_template_substitution ($$) {
     my ($body, $params) = @_;
-    $body =~ s#<\?php echo \$values\['([^']+)'\]\ ?>#do_one_substitution($params, $1)#ges;
+    $body =~ s#<\?php echo \$values\['([^']+)'\] ?\?>#do_one_substitution($params, $1)#ges;
 
     my $subject;
     if ($body =~ m#^Subject: ([^\n]*)\n\n#s) {
