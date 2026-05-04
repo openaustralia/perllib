@@ -52,6 +52,14 @@ sub find_php () {
             return "$dir/$name" if (-x "$dir/$name");
         }
     }
+    # Fall back to mise if twfy project is present
+    for my $twfy (qw(. .. ../twfy ../../twfy)) {
+        if (-f "$twfy/mise.toml") {
+            my $php = `cd $twfy && mise which php 2>/dev/null`;
+            chomp $php;
+            return $php if $php && -x $php;
+        }
+    }
     die "unable to locate PHP binary, needed to read config file";
 }
 
