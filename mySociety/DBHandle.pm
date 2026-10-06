@@ -151,7 +151,7 @@ sub dbh () {
     our $dbh_process;
 
     # If the connection to the database has gone away, try to detect the
-    # condition here. Also detect a fork which has occured since dbh() was last
+    # condition here. Also detect a fork which has occurred since dbh() was last
     # called. XXX this means we could restart a transaction half-way through. 
     if (!defined($dbh) || $dbh_process != $$
         || !eval { $dbh->ping() }) { # call through eval because that's what Apache::DBI does
